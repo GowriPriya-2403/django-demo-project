@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3 class="text-center">UPDATE MOVIES</h3>
+<div class="container mt-3"></div>
+<form method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+  <label  class="form-label">Title</label>
+  <input type="text" class="form-control"   name="t" value="{{movie.title}}" placeholder="Enter the title">
+</div>
+    <div class="mb-3">
+  <label class="form-label">Description</label>
+  <input type="text" class="form-control" name="d" value="{{movie.description}}" placeholder="Enter the description">
+</div>
+    <div class="mb-3">
+  <label class="form-label">Language</label>
+  <input type="text" class="form-control" name="l" value="{{movie.language}}" placeholder="Enter the language">
+</div>
+    <div class="mb-3">
+  <label class="form-label">Year</label>
+  <input type="number" class="form-control" name="y" value="{{movie.year}}" placeholder="Enter the year">
+</div>
+     <div class="mb-3">
+         <img src="{{movie.poster.url}}" height="100px" width="100px">
+  <label class="form-label">Poster</label>
+         <input type="file" class="form-control" name="p">
+</div>
+    <div class="mb-3">
+  <input type="submit" class="btn btn-dark text-light px-4">
+<!--  <input type="file" class="form-control" name="p">-->
+<!--</div>-->
+<!--    <div class="mb-3">-->
+<!--  <input type="submit" class="btn btn-dark text-light px-4">-->
+
+</div>
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
