@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 p-5">
+<h2 class="text-center">You have searched for <span class="text-light">{{query}}</span></h2>
+
+<div class="mx-auto w-75">
+    {% if book == None %} <!--if empty query-->
+    <h4 class="text-center text-danger">No Result Found</h4>
+    {% elif book.exists %}
+
+    <table class="table table-bordered">
+        <tr class="fw-bold fs-4">
+<th>Title</th>
+<th>Author</th>
+<th>Language</th>
+<th>Price</th>
+<th>Page</th>
+<th>cover</th>
+<th>pdf</th>
+</tr>
+{% for i in book %}
+<tr>
+    <td>{{i.title}}</td>
+    <td>{{i.author}}</td>
+    <td>{{i.language}}</td>
+    <td>{{i.price}}</td>
+    <td>{{i.pages}}</td>
+    <td><img src="{{i.cover.url}}" height="150px" width="100px" class="img-thumbnail"></td>
+    <td> <a href="{{i.pdf.url}}">Download</a></td>
+</tr>{% endfor %}
+    </table>
+
+
+
+    {% else %}  <!--if query result empty-->
+    <h4 class="text-center text-danger">No Result Found</h4>
+    {% endif %}
+
+</div>
+</div>
+{% endblock %}
