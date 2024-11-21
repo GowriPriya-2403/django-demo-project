@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="text-center " style="font-size:40px;">DETAILS</h1>
+
+<!-- Start About Page  -->
+    <div class="about-box-main">
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-6 ">
+                    <div class="banner-frame"> <img class="img-fluid" src="{{pro.image.url}}" height="350px" width="250px"/>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="noo-sh-title-top"><span>{{pro.name}}</span></h2>
+                    <p>{{pro.desc}}</p>
+                    <p>{{pro.price}}</p>
+                    <p>{{pro.stock}}</p>
+                    {% if user.is_superuser %}
+                      {% if pro.stock > 0 %}
+                        <p>Product in stock</p>
+                        <a class="btn hvr-hover" href="{% url 'shop:addstock'  pro.id %}">Add Stock</a>
+                      {% else %}
+                        <p>Product out of stock</p>
+                        <a class="btn hvr-hover" href="{% url 'shop:addstock' pro.id %}">Add Stock</a>
+                      {% endif %}
+                    {% else %}
+                      {% if pro.stock > 0 %}
+                        <a class="btn hvr-hover" href="{% url 'cart:addcart'  pro.id %}">Add To Cart</a>
+                      {% else %}
+                        <p>Product out of stock</p>
+                      {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+
+{% endblock %}
